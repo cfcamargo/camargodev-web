@@ -8,7 +8,8 @@ import {
 const props = defineProps<{
     url: string,
     description: string,
-    name: string
+    name: string,
+    icon: string
 }>()
 </script>
 
@@ -16,16 +17,16 @@ const props = defineProps<{
     <ClientOnly>
         <HoverCard>
             <HoverCardTrigger>
-                <a :href="props.url" target="_blank">
-                    <slot/>
+                <a :href="props.url" target="_blank" class="flex justify-center items-center bg-zinc-900 w-8 h-8 p-2 rounded">
+                    <NuxtImg :src="props.icon" class="w-full"/>
                 </a>
             </HoverCardTrigger>
             <HoverCardContent>
                 <div>
-                    <span>
+                    <span class="font-bold text-xl text-green-600">
                         {{ props.name }}
                     </span>
-                    <p>
+                    <p class="mt-2">
                         {{  props.description }}
                     </p>
                 </div>

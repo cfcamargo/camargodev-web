@@ -17,6 +17,13 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
+
+const colorMode = useColorMode()
+
+const changeTheme = (theme: string) => {
+    colorMode.preference = theme
+}
+
 </script>
 <template>
     <ClientOnly>
@@ -45,8 +52,8 @@ import {
                     <DropdownMenuLabel>
                         Tema
                     </DropdownMenuLabel>
-                    <ToggleGroup type="single">
-                        <ToggleGroupItem value="a" title="Dark">
+                    <ToggleGroup type="single" :model-value="$colorMode.preference">
+                        <ToggleGroupItem value="dark" @click="changeTheme('dark')">
                             <TooltipProvider>
                                 <Tooltip>
                                 <TooltipTrigger>
@@ -58,7 +65,7 @@ import {
                                 </Tooltip>
                             </TooltipProvider>
                         </ToggleGroupItem>
-                        <ToggleGroupItem value="b">
+                        <ToggleGroupItem value="light" @click="changeTheme('light')">
                             <TooltipProvider>
                                 <Tooltip>
                                 <TooltipTrigger>
@@ -70,7 +77,7 @@ import {
                                 </Tooltip>
                             </TooltipProvider>
                         </ToggleGroupItem>
-                        <ToggleGroupItem value="c">
+                        <ToggleGroupItem value="system" @click="changeTheme('system')">
                             <TooltipProvider>
                                 <Tooltip>
                                 <TooltipTrigger>
