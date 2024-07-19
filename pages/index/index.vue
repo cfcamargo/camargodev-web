@@ -74,7 +74,7 @@ const tecnologiesList = ref([
             </div>
 
             <div class="w-3/12" >
-
+                <Projects />
             </div>
         </Container>
     </app-layout>
