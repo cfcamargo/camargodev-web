@@ -1,57 +1,27 @@
 <script lang="ts" setup>
 import AppLayout from '@/layouts/AppLayout.vue'
-import { useTecnologies } from '@/composables/useTecnologies'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Newspaper, SquareTerminal, Info } from 'lucide-vue-next';
 
-const { tecnologies } = useTecnologies()
 
-const tecnologiesList = ref([
-    'vuejs', 'nuxtjs', 'tailwindcss', 'pinia', 'adonisjs'
-])
 
 </script>
 <template>
     <app-layout>
         <Container class="flex gap-5 pt-2">
             <div class="w-3/12 bg-white dark:bg-zinc-700 px-2 rounded-md pb-6">
-                <div class="w-full flex justify-center transform -translate-y-1/2">
-                    <Avatar/>
-                </div>
-
-                <div class="w-full flex flex-col gap-2 items-center -mt-[60px]">
-                    <h2 class="font-semibold text-2xl">
-                        Cristian Camargo
-                    </h2>
-
-                    <div class="flex flex-col items-center">
-                        <p>Desenvolvedor Full Stack</p>
-                        <span class="text-xs text-green-600">Cygni Agroscience</span>
-                    </div>
-
-
-                    <div class="flex gap-2 items-center">
-                        <Tecnology 
-                            v-for="(tecnology, index) in tecnologiesList" 
-                            :key="index"
-                            :name="tecnologies[tecnology].name"
-                            :description="tecnologies[tecnology].description"
-                            :url="tecnologies[tecnology].url"
-                            :icon="tecnologies[tecnology].icon"
-                        />
-                    </div>
-                </div>
+                <ProfileResum />
             </div>
 
-            <div class="w-6/12 bg-white dark:bg-zinc-700 p-2 rounded-md">
+            <div class="w-6/12  p-2 d">
                 <ClientOnly>
-                    <Tabs default-value="feed">
-                        <TabsList class="w-full flex">
+                    <Tabs default-value="career">
+                        <TabsList class="w-full flex bg-white dark:bg-zinc-700 rounded-m">
                             <TabsTrigger value="feed" class="flex-1 flex items-center gap-2">
                                 <Newspaper/>
                                 <span>Feed</span>
                             </TabsTrigger>
-                            <TabsTrigger value="carrer" class="flex-1 flex items-center gap-2">
+                            <TabsTrigger value="career" class="flex-1 flex items-center gap-2">
                                 <SquareTerminal />
                                 <span>Carreira</span>
                             </TabsTrigger>
@@ -63,11 +33,11 @@ const tecnologiesList = ref([
                         <TabsContent value="feed">
                             Make changes to your account here.
                         </TabsContent>
-                        <TabsContent value="carrer">
-                            Change your password here.
+                        <TabsContent value="career">
+                            <Career />
                         </TabsContent>
-                        <TabsContent value="about">
-                            Change your password here.
+                        <TabsContent value="about" class="py-2">
+                            <About />
                         </TabsContent>
                     </Tabs>
                 </ClientOnly>
