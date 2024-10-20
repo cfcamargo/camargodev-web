@@ -1,13 +1,5 @@
 <script lang="ts" setup>
-import { Moon, Sun, MonitorCog } from 'lucide-vue-next';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
-import {
-    Tooltip,
-    TooltipContent,
-    TooltipProvider,
-    TooltipTrigger
-} from '@/components/ui/tooltip'
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -18,78 +10,45 @@ import {
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 
-const colorMode = useColorMode()
-
-const changeTheme = (theme: string) => {
-    colorMode.preference = theme
-}
-
 </script>
 <template>
     <ClientOnly>
         <DropdownMenu>
             <DropdownMenuTrigger>
                 <Avatar>
-                    <AvatarImage src="https://github.com/radix-vue.png" alt="@radix-vue" />
-                    <AvatarFallback>CN</AvatarFallback>
+                    <AvatarImage 
+                        src="https://github.com/radix-vue.png" 
+                        alt="@radix-vue" 
+                    />
+                    <AvatarFallback>
+                        CN
+                    </AvatarFallback>
                 </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
                 <DropdownMenuGroup>
-                    <DropdownMenuLabel>
-                    Cristian Camargo
+                    <!-- <DropdownMenuLabel>
+                        Cristian Camargo
                     </DropdownMenuLabel>
-                    <DropdownMenuSeparator />
+                    <DropdownMenuSeparator /> -->
                     <DropdownMenuItem>
+                        <NuxtLink to="/auth">
+                            Fazer Login
+                        </NuxtLink>
+                    </DropdownMenuItem>
+                    <!-- <DropdownMenuItem>
                         Profile
                     </DropdownMenuItem>
                     <DropdownMenuItem>
                         Logout
-                    </DropdownMenuItem>
+                    </DropdownMenuItem> -->
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
                     <DropdownMenuLabel>
                         Tema
                     </DropdownMenuLabel>
-                    <ToggleGroup type="single" :model-value="$colorMode.preference">
-                        <ToggleGroupItem value="dark" @click="changeTheme('dark')">
-                            <TooltipProvider>
-                                <Tooltip>
-                                <TooltipTrigger>
-                                    <Moon />
-                                </TooltipTrigger>
-                                <TooltipContent>
-                                    <p>Dark</p>
-                                </TooltipContent>
-                                </Tooltip>
-                            </TooltipProvider>
-                        </ToggleGroupItem>
-                        <ToggleGroupItem value="light" @click="changeTheme('light')">
-                            <TooltipProvider>
-                                <Tooltip>
-                                <TooltipTrigger>
-                                    <Sun />
-                                </TooltipTrigger>
-                                <TooltipContent>
-                                    <p>Ligth</p>
-                                </TooltipContent>
-                                </Tooltip>
-                            </TooltipProvider>
-                        </ToggleGroupItem>
-                        <ToggleGroupItem value="system" @click="changeTheme('system')">
-                            <TooltipProvider>
-                                <Tooltip>
-                                <TooltipTrigger>
-                                    <MonitorCog />
-                                </TooltipTrigger>
-                                <TooltipContent>
-                                    <p>System</p>
-                                </TooltipContent>
-                                </Tooltip>
-                            </TooltipProvider>
-                        </ToggleGroupItem>
-                    </ToggleGroup>
+                    <ThemeSwitch />
                 </DropdownMenuGroup>
             </DropdownMenuContent>
         </DropdownMenu>
