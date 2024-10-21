@@ -18,16 +18,7 @@ const router = useRouter()
 const submit = async() => {
     loading.value = true
     try {
-        const { token, user }: LoginResProps = await $fetch(`${import.meta.env.VITE_API_URL}/login`, {
-            method: 'POST',
-            body: {
-                email: email.value,
-                password: password.value
-            }
-        })
-        const authTokenCookie = useCookie('authToken');
-        authTokenCookie.value = token;
-        authStore.setAuthenticatedUser({token, user})
+        await authStore.login(email.value, password.value)
         router.push('/')
     }
     catch(err) {

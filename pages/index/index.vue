@@ -13,7 +13,7 @@ import { Newspaper, SquareTerminal, Info } from 'lucide-vue-next';
                 <ProfileResum />
             </div>
 
-            <div class="w-6/12  p-2 d">
+            <div class="w-6/12 p-2 d">
                 <ClientOnly>
                     <Tabs default-value="career">
                         <TabsList class="w-full flex bg-white dark:bg-zinc-700 rounded-m">

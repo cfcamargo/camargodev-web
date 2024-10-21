@@ -9,6 +9,20 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
+import { useAuthStore } from '~/store/User/auth';
+
+const authStore = useAuthStore()
+const router = useRouter()
+
+const handleLogout = async() => {
+    try{
+        await authStore.logout()
+        router.push('/auth')
+    }
+    catch(e){
+        alert('Erro ao realizar Logout')
+    }
+}
 
 </script>
 <template>
@@ -27,21 +41,21 @@ import {
             </DropdownMenuTrigger>
             <DropdownMenuContent>
                 <DropdownMenuGroup>
-                    <!-- <DropdownMenuLabel>
+                    <DropdownMenuLabel>
                         Cristian Camargo
                     </DropdownMenuLabel>
-                    <DropdownMenuSeparator /> -->
+                    <DropdownMenuSeparator />
                     <DropdownMenuItem>
                         <NuxtLink to="/auth">
                             Fazer Login
                         </NuxtLink>
                     </DropdownMenuItem>
-                    <!-- <DropdownMenuItem>
+                    <DropdownMenuItem>
                         Profile
                     </DropdownMenuItem>
-                    <DropdownMenuItem>
+                    <DropdownMenuItem @click="handleLogout">
                         Logout
-                    </DropdownMenuItem> -->
+                    </DropdownMenuItem>
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
