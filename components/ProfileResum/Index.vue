@@ -19,12 +19,8 @@ const tecnologiesList = ref([
         </h2>
 
         <div class="flex flex-col items-center">
-            <p>Desenvolvedor Front End na</p>
-            <a href="https://cygniagroscience.com/home" target="_blank">
-                <span class="text-green-600">Cygni Agroscience</span>
-            </a>
+            <p>Desenvolvedor Full Stack</p>
         </div>
-
 
         <div class="flex gap-2 items-center mt-4">
             <Tecnology 

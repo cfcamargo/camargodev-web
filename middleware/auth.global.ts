@@ -1,7 +1,7 @@
 import { useAuthStore } from "~/store/User/auth";
 
 export default defineNuxtRouteMiddleware(async (to, from) => {
-    const public_routes = ["/auth", "/"];
+    const public_routes = ["/auth"];
 
     if (public_routes.includes(to.path)) {
         return;
@@ -11,7 +11,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
     const authTokenCookie = useCookie('authToken');
     const { token }: any = authTokenCookie.value || authStore.getAuthenticatedUser;
 
-    if (!token) {
+    if (!token && to.path !== '/') {
         return await navigateTo('/auth');
     }
 

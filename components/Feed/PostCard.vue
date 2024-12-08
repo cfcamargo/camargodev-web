@@ -7,30 +7,31 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
+import type { Posts } from '~/@types/Posts';
+
+const { post } = defineProps<{
+    post : Posts
+}>()
+
+const { convertIsoDateAndTime } = useConvertData()
 
 
 </script>
 
 <template>
-    <Card>
+    <Card class="w-full">
         <CardHeader>
             <CardTitle>
-                Titulo do Card
+                {{ post.title }}
             </CardTitle>
             <CardDescription>
-                08/12/2024
+                {{  convertIsoDateAndTime(post.createdAt) }}
             </CardDescription>
         </CardHeader>
         <CardContent>
-            <div class="pb-6">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam animi non vel enim aperiam veniam iusto, placeat, et natus labore pariatur blanditiis, dolores obcaecati quas? Laudantium vitae in illo fuga!
-
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium soluta, expedita itaque inventore cupiditate odio qui esse sit facere odit reprehenderit nisi, a dicta eligendi impedit nulla iusto, quas at?
-
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel dicta laborum nemo doloribus cumque, animi atque autem dolore beatae vitae amet, illo, quidem maxime. Dolores quasi animi aliquam labore id!
-            </div>
+            <div class="pb-6" v-html="post.content"/>
             <NuxtImg 
-                src="/cover.png"
+                :src="post.midiaPath"
                 class="w-full"
             />
         </CardContent>

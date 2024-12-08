@@ -14,6 +14,9 @@ import { useToast } from "~/components/ui/toast/use-toast";
 import PostList from './PostList.vue';
 
 const token = useAuthToken()
+const queryClient = useQueryClient()
+
+console.log(token)
 const { isAuthenticated } = useAuthCheck()
 
 const isOpen = ref(false)
@@ -43,6 +46,27 @@ const handleFileChange = (event: Event) => {
     }
 };
 
+const { mutate } = useMutation({
+    mutationFn: (newPost:any) => $fetch(`${import.meta.env.VITE_API_URL}/posts`, { 
+        method: "POST",  
+        body: newPost,
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }),
+    onSuccess: () => {
+        postTitle.value = '',
+        postContent.value = '',
+        midia.value = null
+        isOpen.value = false;
+        toast({
+            description: "Post Criado com sucesso",
+        });
+        loading.value = false
+        queryClient.invalidateQueries({ queryKey: ['posts'] })
+    },
+})
+
 
 const handleSubmit = async() => {
     const formData = new FormData();
@@ -53,41 +77,7 @@ const handleSubmit = async() => {
     }
 
     loading.value = true
-
-    try {
-        const response: any = await $fetch(
-            `${import.meta.env.VITE_API_URL}/posts`,
-            {
-                method: "POST",
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-                body: formData,
-            },
-        );
-
-        if (response.error) {
-            console.log(response);
-            toast({
-                description: response.error,
-                variant: "destructive",
-            });
-            return;
-        }
-
-        postTitle.value = '',
-        postContent.value = '',
-        midia.value = null
-        isOpen.value = false;
-        toast({
-            description: "Post Criado com sucesso",
-        });
-
-    } catch(e){
-        console.log(e)
-    } finally {
-        loading.value = false
-    }
+    mutate(formData)
 }
 
 </script>

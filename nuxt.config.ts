@@ -8,7 +8,8 @@ export default defineNuxtConfig({
     "shadcn-nuxt",
     "@nuxt/image",
     '@nuxtjs/color-mode',
-    "@pinia/nuxt"
+    "@pinia/nuxt",
+    "@hebilicious/vue-query-nuxt"
   ],
   shadcn: {
     /**

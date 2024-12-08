@@ -6,7 +6,7 @@ import { Newspaper, SquareTerminal, Info } from 'lucide-vue-next';
 </script>
 <template>
     <app-layout>
-        <Container class="flex gap-5 pt-2">
+        <Container class="flex gap-5 pt-2 items-start">
             <div class="w-3/12 bg-white dark:bg-zinc-700 px-2 rounded-md pb-6">
                 <ProfileResum />
             </div>
