@@ -3,8 +3,6 @@ import AppLayout from '@/layouts/AppLayout.vue'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Newspaper, SquareTerminal, Info } from 'lucide-vue-next';
 
-
-
 </script>
 <template>
     <app-layout>
@@ -15,7 +13,7 @@ import { Newspaper, SquareTerminal, Info } from 'lucide-vue-next';
 
             <div class="w-6/12 p-2 d">
                 <ClientOnly>
-                    <Tabs default-value="career">
+                    <Tabs default-value="feed">
                         <TabsList class="w-full flex bg-white dark:bg-zinc-700 rounded-m">
                             <TabsTrigger value="feed" class="flex-1 flex items-center gap-2">
                                 <Newspaper/>
@@ -31,7 +29,7 @@ import { Newspaper, SquareTerminal, Info } from 'lucide-vue-next';
                             </TabsTrigger>
                         </TabsList>
                         <TabsContent value="feed">
-                            Make changes to your account here.
+                            <Feed />
                         </TabsContent>
                         <TabsContent value="career">
                             <Career />

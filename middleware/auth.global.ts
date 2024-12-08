@@ -1,7 +1,7 @@
 import { useAuthStore } from "~/store/User/auth";
 
 export default defineNuxtRouteMiddleware(async (to, from) => {
-    const public_routes = ["/auth"];
+    const public_routes = ["/auth", "/"];
 
     if (public_routes.includes(to.path)) {
         return;

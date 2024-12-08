@@ -12,6 +12,7 @@ import {
 import { useAuthStore } from '~/store/User/auth';
 
 const authStore = useAuthStore()
+const { isAuthenticated } = useAuthCheck()
 const router = useRouter()
 
 const handleLogout = async() => {
@@ -41,19 +42,19 @@ const handleLogout = async() => {
             </DropdownMenuTrigger>
             <DropdownMenuContent>
                 <DropdownMenuGroup>
-                    <DropdownMenuLabel>
-                        Cristian Camargo
+                    <DropdownMenuLabel v-if="isAuthenticated()">
+                        {{ authStore.getUser.fullName }}
                     </DropdownMenuLabel>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem>
+                    <DropdownMenuItem v-if="!isAuthenticated()">
                         <NuxtLink to="/auth">
                             Fazer Login
                         </NuxtLink>
                     </DropdownMenuItem>
-                    <DropdownMenuItem>
+                    <DropdownMenuItem v-if="isAuthenticated()">
                         Profile
                     </DropdownMenuItem>
-                    <DropdownMenuItem @click="handleLogout">
+                    <DropdownMenuItem @click="handleLogout" v-if="isAuthenticated()">
                         Logout
                     </DropdownMenuItem>
                 </DropdownMenuGroup>
