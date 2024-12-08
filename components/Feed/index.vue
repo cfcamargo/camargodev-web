@@ -75,6 +75,8 @@ const handleSubmit = async() => {
         formData.append("content", postContent.value);
         formData.append("file", midia.value);
     }
+    
+    
 
     loading.value = true
     mutate(formData)
